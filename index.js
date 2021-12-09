@@ -77,7 +77,7 @@ async function tracker(){
 //mint tokens using flashbots
 async function mint(amount){
   let nonce = await web3.eth.getTransactionCount(ETHEREUM_ADDRESS, 'pending');
-  let contractFunction = instance.methods['mint'](amount).encodeABI(); //either mint() or transfer() tokens
+  let contractFunction = instance.methods['mint'](amount).encodeABI(); 
 
   const wallet = new Wallet(ETHEREUM_PRIVATE_KEY)
   const flashbotsProvider = await FlashbotsBundleProvider.create(
