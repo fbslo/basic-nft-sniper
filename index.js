@@ -25,6 +25,7 @@ let instance = new web3.eth.Contract(ABI, '0xde2942B52e75c327AD4ddD6C7Db7c398fED
 // search()
 tracker()
 
+//bruteforce collection details to get rare IDs
 async function search(){
   let i = 1591;
   while(i < 5000){
@@ -42,6 +43,7 @@ async function search(){
   }
 }
 
+//on every block, check how far from rares are we, and if we are close, mint!
 async function tracker(){
   let wantedIds = await getWantedIds()
   wantedIds = wantedIds.sort(function(a, b) {
@@ -72,6 +74,7 @@ async function tracker(){
   })
 }
 
+//mint tokens using flashbots
 async function mint(amount){
   let nonce = await web3.eth.getTransactionCount(ETHEREUM_ADDRESS, 'pending');
   let contractFunction = instance.methods['mint'](amount).encodeABI(); //either mint() or transfer() tokens
